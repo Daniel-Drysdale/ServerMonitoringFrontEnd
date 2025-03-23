@@ -18,7 +18,7 @@ const Login = () => {
       <div className="center-div login-form">
         <center>
           <div style={{ marginBottom: "20px", fontSize: "24pt" }}>
-            Account Login
+            Account Log in
           </div>
         </center>
         <div className="mb-5 form center-div">
@@ -31,7 +31,8 @@ const Login = () => {
             type="email"
             className="form-control"
             id="emailID"
-            placeholder=" -name@example.com- "
+            placeholder="name@example.com"
+            style={{ width: "400px" }}
           />
           <center>
             <label

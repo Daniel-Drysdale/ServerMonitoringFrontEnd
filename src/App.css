@@ -133,3 +133,15 @@ html {
   --bs-btn-border-color: #ffffff;
   --bs-btn-hover-border-color: #ffffff;
 }
+
+.create-account-form {
+  background-color: #3431ff;
+  min-width: 100vw;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-bottom: 100px;
+  padding-top: 10px;
+  margin-top: 25px;
+  min-width: 10vw;
+  border-radius: 10px;
+}
