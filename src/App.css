@@ -2,15 +2,18 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424 !important;
+  background-color: #f0f0f0 !important;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #f0f0f0 !important;
+  font-family: monospace;
+  color: #ffffff;
 }
 
 .nav-item {
@@ -26,17 +29,6 @@
 ul.nav.nav-pills {
   --bs-nav-pills-link-active-bg: var(--bs-link-color);
   --bs-nav-link-hover-color: #ffffff;
-}
-
-.overlay-text {
-  margin-left: auto;
-  margin-right: auto;
-  position: absolute;
-
-  transform: translate(-50%, -50%);
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Optional: add a shadow for better visibility */
-  pointer-events: none;
 }
 
 .large-text {
@@ -110,4 +102,34 @@ body {
 html {
   overflow-x: hidden; /* Disable horizontal scrolling */
   margin: 0; /* Ensure no margin is pushing the content out */
+}
+
+.login-form {
+  background-color: #3431ff;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  padding-top: 25px;
+  margin-top: 50px;
+  min-width: 10vw;
+  border-radius: 10px;
+}
+
+.create-account-element {
+  background-color: #3431ff;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-top: 25px;
+  min-width: 10vw;
+  border-radius: 10px;
+}
+
+.btn {
+  --bs-btn-color: #3431ff;
+  --bs-btn-bg: #ffffff;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-border-color: #ffffff;
+  --bs-btn-hover-border-color: #ffffff;
 }
