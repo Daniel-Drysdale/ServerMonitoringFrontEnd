@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import zxcvbn from "zxcvbn"; // Importing zxcvbn for password strength checking
-import { ChangeEvent, useState } from "react"; // Import types for event handling
+import zxcvbn from "zxcvbn";
+import { ChangeEvent, useState } from "react";
 
 const CreateAccount = () => {
   const navigate = useNavigate();
-
-  //UseStates for the password creation / verification
+  const BASE_URL = import.meta.env.VITE_BASE_DB_URL;
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [passwordStrength, setPasswordStrength] = useState<number>(0);
@@ -14,7 +14,7 @@ const CreateAccount = () => {
     const value = event.target.value;
     setPassword(value);
 
-    const result = zxcvbn(value); //zxcvbn is a password strength checker
+    const result = zxcvbn(value);
     setPasswordStrength(result.score);
   };
 
@@ -30,12 +30,36 @@ const CreateAccount = () => {
       return;
     }
 
-    // Insert async function to post new account data to the backend here
+    try {
+      const response = await fetch(`${BASE_URL}v2/api/create-user/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
 
-    navigate("/");
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(
+          `Failed to create account: ${
+            errorData.message || response.statusText
+          }`
+        );
+        return;
+      }
+
+      alert("Account created successfully!");
+      navigate("/");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred while creating the account.");
+    }
   };
 
-  //Switch case of password stength
   const getStrengthMessage = (score: number): string => {
     switch (score) {
       case -1:
@@ -63,16 +87,12 @@ const CreateAccount = () => {
         >
           <center>
             <div
-              style={{
-                marginBottom: "20px",
-                fontSize: "24pt",
-                width: "500px",
-              }}
+              style={{ marginBottom: "20px", fontSize: "24pt", width: "500px" }}
             >
               Create Account
             </div>
           </center>
-          <div className="form center-div" style={{}}>
+          <div className="form center-div">
             <center>
               <label htmlFor="emailID" className="form-label">
                 Email Address:
@@ -83,8 +103,11 @@ const CreateAccount = () => {
               className="form-control"
               id="emailID"
               placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               style={{ width: "400px" }}
             />
+
             <center>
               <label
                 htmlFor="password"
@@ -104,7 +127,6 @@ const CreateAccount = () => {
             />
             {password.length > 0 && (
               <div
-                className=""
                 style={{
                   color:
                     passwordStrength < 2
@@ -112,7 +134,6 @@ const CreateAccount = () => {
                       : passwordStrength === 2
                       ? "#fffa63"
                       : "#5ddf71",
-
                   position: "absolute",
                   left: "420px",
                 }}
@@ -120,9 +141,10 @@ const CreateAccount = () => {
                 Password Strength: {getStrengthMessage(passwordStrength)}
               </div>
             )}
+
             <center>
               <label
-                htmlFor="password"
+                htmlFor="confirmPassword"
                 className="form-label"
                 style={{ marginTop: "40px", marginBottom: "10px" }}
               >
@@ -138,6 +160,7 @@ const CreateAccount = () => {
               onChange={handleConfirmPasswordChange}
             />
           </div>
+
           {confirmPassword !== password && confirmPassword.length > 0 && (
             <div
               className="center-div"

@@ -1,18 +1,45 @@
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 const Login = () => {
-  //Insert Form Submission async function here to send POST request
-  //to verify user login information
-
   const navigate = useNavigate();
 
-  const handleLoginSubmit = async () => {
-    navigate("/home");
-  };
+  // States to handle email and password input
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const BASE_URL = import.meta.env.VITE_BASE_DB_URL;
+  // Handles login form submission
 
-  const handleCreateAccount = async () => {
+  const handleLoginSubmit = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/v2/api/account-login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Send user_id via React Router state
+        navigate("/home", { state: { user_id: data.user_id } });
+      } else {
+        const errorData = await response.json();
+        alert(`Login failed: ${errorData.message || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("An error occurred while logging in.");
+    }
+  };
+  // Navigate to the account creation page
+  const handleCreateAccount = () => {
     navigate("/create-account");
   };
+
   return (
     <>
       <div className="center-div login-form">
@@ -33,6 +60,8 @@ const Login = () => {
             id="emailID"
             placeholder="name@example.com"
             style={{ width: "400px" }}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <center>
             <label
@@ -48,6 +77,8 @@ const Login = () => {
             className="form-control"
             id="password"
             placeholder=""
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button
