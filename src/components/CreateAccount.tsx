@@ -26,7 +26,7 @@ const CreateAccount = () => {
 
   const handleLoginSubmit = async (): Promise<void> => {
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      alert("Passwords do not match!!");
       return;
     }
 
