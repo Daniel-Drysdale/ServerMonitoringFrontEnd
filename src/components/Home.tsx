@@ -6,7 +6,7 @@ const Home = () => {
 
   if (!user_id) {
     // Handle the case where the user_id is missing
-    return <div>Error: No user ID found</div>;
+    return <div>Error: No user ID found!</div>;
   }
 
   return (
