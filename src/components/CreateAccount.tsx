@@ -31,7 +31,7 @@ const CreateAccount = () => {
     }
 
     try {
-      const response = await fetch(`${BASE_URL}v2/api/create-user/`, {
+      const response = await fetch(`${BASE_URL}/v2/api/create-user/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
