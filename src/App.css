@@ -134,6 +134,14 @@ html {
   --bs-btn-hover-border-color: #ffffff;
 }
 
+.btn-home {
+  --bs-btn-color: #ffffff !important;
+  --bs-btn-bg: #0400ff !important;
+  --bs-btn-hover-color: #ffffff !important;
+  --bs-btn-border-color: #ffffff !important;
+  --bs-btn-hover-border-color: #0400ff !important;
+}
+
 .create-account-form {
   background-color: #3431ff;
   min-width: 100vw;
@@ -144,4 +152,8 @@ html {
   margin-top: 25px;
   min-width: 10vw;
   border-radius: 10px;
+}
+
+.modal {
+  --modal-backdrop-bg: black;
 }

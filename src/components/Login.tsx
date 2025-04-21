@@ -3,12 +3,12 @@ import { useState } from "react";
 const Login = () => {
   const navigate = useNavigate();
 
-  // States to handle email and password input
+  //States to handle email and password input
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const BASE_URL = import.meta.env.VITE_BASE_DB_URL;
-  // Handles login form submission
-
+  
+  //Handles login form submission
   const handleLoginSubmit = async () => {
     try {
       const response = await fetch(`${BASE_URL}/v2/api/account-login/`, {
@@ -35,7 +35,7 @@ const Login = () => {
       alert("An error occurred while logging in.");
     }
   };
-  // Navigate to the account creation page
+  //Navigate to the account creation page
   const handleCreateAccount = () => {
     navigate("/create-account");
   };
