@@ -96,15 +96,18 @@ const Home = () => {
     endpoint_path: string
   ) => {
     try {
-      const response = await fetch(`${BASE_URL}/v2/api/edit-endpoint/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          endpoint_id,
-          endpoint_name,
-          endpoint_path,
-        }),
-      });
+      const response = await fetch(
+        `${BASE_URL}/v2/api/edit-endpoint/?userID=${user_id}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            endpoint_id,
+            endpoint_name,
+            endpoint_path,
+          }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to edit endpoint");
       setShowEdit(false); //closes the modal
@@ -193,7 +196,13 @@ const Home = () => {
             >
               Cancel
             </Button>
-            <Button variant="primary" onClick={createEndpoint}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                createEndpoint();
+                clear_inputs();
+              }}
+            >
               Save Changes
             </Button>
           </Modal.Footer>
@@ -255,7 +264,8 @@ const Home = () => {
                   endpointName,
                   endpointPath
                 );
-                setShowDelete(false);
+                clear_inputs();
+                setShowEdit(false);
               }}
             >
               Save Changes
