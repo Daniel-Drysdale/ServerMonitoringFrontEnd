@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const BASE_URL = import.meta.env.VITE_BASE_DB_URL;
-  
+
   //Handles login form submission
   const handleLoginSubmit = async () => {
     try {
@@ -24,7 +24,7 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Send user_id via React Router state
+        //Sends user_id
         navigate("/home", { state: { user_id: data.user_id } });
       } else {
         const errorData = await response.json();

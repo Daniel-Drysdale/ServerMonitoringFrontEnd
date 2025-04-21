@@ -47,7 +47,7 @@ const Home = () => {
   const getEndpoints = async () => {
     try {
       const response = await fetch(
-        `${BASE_URL}v2/api/user-endpoints/?userID=${user_id}`
+        `${BASE_URL}/v2/api/user-endpoints/?userID=${user_id}`
       );
 
       if (!response.ok) throw new Error("Failed to fetch endpoints");
@@ -70,7 +70,7 @@ const Home = () => {
   const createEndpoint = async () => {
     try {
       const response = await fetch(
-        `${BASE_URL}v2/api/create-endpoint/?userID=${user_id}`,
+        `${BASE_URL}/v2/api/create-endpoint/?userID=${user_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -96,7 +96,7 @@ const Home = () => {
     endpoint_path: string
   ) => {
     try {
-      const response = await fetch(`${BASE_URL}v2/api/edit-endpoint/`, {
+      const response = await fetch(`${BASE_URL}/v2/api/edit-endpoint/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -117,7 +117,7 @@ const Home = () => {
   const deleteEndpoint = async (endpoint_id: string) => {
     try {
       const response = await fetch(
-        `${BASE_URL}v2/api/delete-endpoint/?userID=${user_id}`,
+        `${BASE_URL}/v2/api/delete-endpoint/?userID=${user_id}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
