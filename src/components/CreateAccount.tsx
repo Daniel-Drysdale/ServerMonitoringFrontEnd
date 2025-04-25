@@ -83,7 +83,7 @@ const CreateAccount = () => {
       <div>
         <div
           className="center-div create-account-form"
-          style={{ height: "500px", minWidth: "600px" }}
+          style={{ height: "550px", minWidth: "500px" }}
         >
           <center>
             <div
