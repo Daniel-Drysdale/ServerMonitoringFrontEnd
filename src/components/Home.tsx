@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Endpoint = {
   endpoint_id: string;
@@ -37,7 +38,8 @@ const Home = () => {
   const BASE_URL = import.meta.env.VITE_BASE_DB_URL;
 
   if (!user_id) {
-    return <div>Error: No user ID found!</div>;
+    const navigate = useNavigate();
+    navigate("/");
   }
 
   function pathShortener(path: string) {

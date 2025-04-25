@@ -83,7 +83,7 @@ const CreateAccount = () => {
       <div>
         <div
           className="center-div create-account-form"
-          style={{ height: "500px" }}
+          style={{ height: "500px", minWidth: "600px" }}
         >
           <center>
             <div
@@ -125,22 +125,24 @@ const CreateAccount = () => {
               value={password}
               onChange={handlePasswordChange}
             />
-            {password.length > 0 && (
-              <div
-                style={{
-                  color:
-                    passwordStrength < 2
-                      ? "#ff6363"
-                      : passwordStrength === 2
-                      ? "#fffa63"
-                      : "#5ddf71",
-                  position: "absolute",
-                  left: "420px",
-                }}
-              >
-                Password Strength: {getStrengthMessage(passwordStrength)}
-              </div>
-            )}
+            <div className="text-center center-div">
+              {password.length > 0 && (
+                <div
+                  style={{
+                    color:
+                      passwordStrength < 2
+                        ? "#ff6363"
+                        : passwordStrength === 2
+                        ? "#fffa63"
+                        : "#5ddf71",
+
+                    left: "420px",
+                  }}
+                >
+                  Password Strength: {getStrengthMessage(passwordStrength)}
+                </div>
+              )}
+            </div>
 
             <center>
               <label
@@ -168,7 +170,6 @@ const CreateAccount = () => {
                 marginTop: "5px",
                 left: "410px",
                 color: "#ff6363",
-                position: "absolute",
               }}
             >
               Passwords are not the same!
